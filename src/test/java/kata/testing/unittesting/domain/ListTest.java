@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ListTest {
@@ -46,5 +46,18 @@ public class ListTest {
 
         assertEquals("hello", listMock.get(0));
         assertEquals("hello", listMock.get(1));
+    }
+
+    @Test
+    public void should_verify_times_of_method_called_with_parameters() {
+        listMock.get(0);
+        listMock.get(1);
+
+        verify(listMock).get(0);
+        verify(listMock, times(2)).get(anyInt());
+        verify(listMock, atLeast(1)).get(anyInt());
+        verify(listMock, atLeastOnce()).get(anyInt());
+        verify(listMock, atMost(2)).get(anyInt());
+        verify(listMock, never()).get(2);
     }
 }
