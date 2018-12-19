@@ -9,7 +9,4 @@ public class SumService {
         return IntStream.of(this.scoreRepository.retrieveAllScores()).sum();
     }
 
-    public void setScoreRepository(ScoreRepository scoreRepository) {
-        this.scoreRepository = scoreRepository;
-    }
 }

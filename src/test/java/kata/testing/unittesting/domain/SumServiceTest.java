@@ -1,7 +1,6 @@
 package kata.testing.unittesting.domain;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -18,11 +17,6 @@ public class SumServiceTest {
 
     @Mock
     ScoreRepository scoreRepositoryMock;
-
-    @Before
-    public void before() {
-        sumService.setScoreRepository(scoreRepositoryMock);
-    }
 
     @Test
     public void should_sum_zero_score_using_mock_of_score_repository() {
