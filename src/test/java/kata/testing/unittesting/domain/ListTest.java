@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 public class ListTest {
 
     @Mock
-    List<Object> listMock;
+    List<Score> listMock;
 
     @Test
     public void should_mock_returning_once() {
@@ -35,18 +35,18 @@ public class ListTest {
 
     @Test
     public void should_return_default_value_for_methods_not_mocked() {
-        when(listMock.get(0)).thenReturn("hello");
+        when(listMock.get(0)).thenReturn(new Score("Alex", 100));
 
-        assertEquals("hello", listMock.get(0));
+        assertEquals(new Score("Alex", 100), listMock.get(0));
         assertEquals(null, listMock.get(1));
     }
 
     @Test
     public void should_return_for_any_int() {
-        when(listMock.get(anyInt())).thenReturn("hello");
+        when(listMock.get(anyInt())).thenReturn(new Score("Alex", 100));
 
-        assertEquals("hello", listMock.get(0));
-        assertEquals("hello", listMock.get(1));
+        assertEquals(new Score("Alex", 100), listMock.get(0));
+        assertEquals(new Score("Alex", 100), listMock.get(1));
     }
 
     @Test
@@ -64,11 +64,11 @@ public class ListTest {
 
     @Test
     public void should_capture_arguments() {
-        listMock.add("good morning");
+        listMock.add(new Score("Alex", 100));
 
-        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<Score> captor = ArgumentCaptor.forClass(Score.class);
         verify(listMock).add(captor.capture());
 
-        assertEquals("good morning", captor.getValue());
+        assertEquals("Alex", captor.getValue().getName());
     }
 }
