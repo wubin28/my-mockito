@@ -3,14 +3,13 @@ package kata.testing.unittesting.domain;
 import java.util.stream.IntStream;
 
 public class SumService {
-    private ScoreRepository someDataServivce;
+    private ScoreRepository scoreRepository;
 
     public int sum() {
-        int[] data = this.someDataServivce.retrieveAllScores();
-        return IntStream.of(data).sum();
+        return IntStream.of(this.scoreRepository.retrieveAllScores()).sum();
     }
 
-    public void setSomeDataService(ScoreRepository dataService) {
-        this.someDataServivce = dataService;
+    public void setScoreRepository(ScoreRepository scoreRepository) {
+        this.scoreRepository = scoreRepository;
     }
 }
