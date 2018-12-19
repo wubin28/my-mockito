@@ -6,6 +6,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -83,5 +84,22 @@ public class ListTest {
         List<Score> allScores = captor.getAllValues();
         assertEquals("Alex", allScores.get(0).getName());
         assertEquals("Ben", allScores.get(1).getName());
+    }
+
+    @Test
+    public void a_mock_does_not_retain_behavior_of_the_original_class() {
+        ArrayList<Score> arrayListMock = mock(ArrayList.class);
+        assertEquals(null, arrayListMock.get(0));
+        assertEquals(0, arrayListMock.size());
+
+        arrayListMock.add(new Score("Alex", 100));
+        arrayListMock.add(new Score("Ben", 90));
+        assertEquals(0, arrayListMock.size());
+
+        when(arrayListMock.size()).thenReturn(5);
+        assertEquals(5, arrayListMock.size());
+
+        arrayListMock.add(new Score("Susan", 80));
+        assertEquals(5, arrayListMock.size());
     }
 }
