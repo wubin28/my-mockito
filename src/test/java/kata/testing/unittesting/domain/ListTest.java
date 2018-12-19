@@ -8,6 +8,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -39,4 +40,11 @@ public class ListTest {
         assertEquals(null, listMock.get(1));
     }
 
+    @Test
+    public void should_return_for_any_int() {
+        when(listMock.get(anyInt())).thenReturn("hello");
+
+        assertEquals("hello", listMock.get(0));
+        assertEquals("hello", listMock.get(1));
+    }
 }
