@@ -63,12 +63,25 @@ public class ListTest {
     }
 
     @Test
-    public void should_capture_arguments() {
+    public void should_capture_an_argument() {
         listMock.add(new Score("Alex", 100));
 
         ArgumentCaptor<Score> captor = ArgumentCaptor.forClass(Score.class);
         verify(listMock).add(captor.capture());
 
         assertEquals("Alex", captor.getValue().getName());
+    }
+
+    @Test
+    public void should_capture_multiple_arguments() {
+        listMock.add(new Score("Alex", 100));
+        listMock.add(new Score("Ben", 90));
+
+        ArgumentCaptor<Score> captor = ArgumentCaptor.forClass(Score.class);
+        verify(listMock, times(2)).add(captor.capture());
+
+        List<Score> allScores = captor.getAllValues();
+        assertEquals("Alex", allScores.get(0).getName());
+        assertEquals("Ben", allScores.get(1).getName());
     }
 }
