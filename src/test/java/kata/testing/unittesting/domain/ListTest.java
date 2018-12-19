@@ -2,6 +2,7 @@ package kata.testing.unittesting.domain;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -59,5 +60,15 @@ public class ListTest {
         verify(listMock, atLeastOnce()).get(anyInt());
         verify(listMock, atMost(2)).get(anyInt());
         verify(listMock, never()).get(2);
+    }
+
+    @Test
+    public void should_capture_arguments() {
+        listMock.add("good morning");
+
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(listMock).add(captor.capture());
+
+        assertEquals("good morning", captor.getValue());
     }
 }
