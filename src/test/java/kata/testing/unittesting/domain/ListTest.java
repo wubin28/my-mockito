@@ -26,4 +26,12 @@ public class ListTest {
         assertEquals(5, listMock.size());
         assertEquals(10, listMock.size());
     }
+
+    @Test
+    public void should_return_default_value_for_methods_not_mocked() {
+        List<Object> listMock = mock(List.class);
+        when(listMock.get(0)).thenReturn("hello");
+        assertEquals("hello", listMock.get(0));
+        assertEquals(null, listMock.get(1));
+    }
 }
