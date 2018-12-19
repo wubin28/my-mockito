@@ -102,4 +102,22 @@ public class ListTest {
         arrayListMock.add(new Score("Susan", 80));
         assertEquals(5, arrayListMock.size());
     }
+
+    @Test
+    public void a_spy_by_default_retains_behavior_of_the_original_class() {
+        ArrayList<Score> arrayListSpy = spy(ArrayList.class);
+        arrayListSpy.add(new Score("Alex", 100));
+        assertEquals(new Score("Alex", 100), arrayListSpy.get(0));
+        assertEquals(1, arrayListSpy.size());
+
+        arrayListSpy.add(new Score("Alex", 100));
+        arrayListSpy.add(new Score("Ben", 90));
+        assertEquals(3, arrayListSpy.size());
+
+        when(arrayListSpy.size()).thenReturn(5);
+        assertEquals(5, arrayListSpy.size());
+
+        arrayListSpy.add(new Score("Susan", 80));
+        assertEquals(5, arrayListSpy.size());
+    }
 }
