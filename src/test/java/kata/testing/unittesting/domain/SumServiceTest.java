@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 public class SumServiceTest {
 
     @InjectMocks
-    SumService sumService = new SumService();
+    SumService sumService;
 
     @Mock
     ScoreRepository scoreRepositoryMock;
