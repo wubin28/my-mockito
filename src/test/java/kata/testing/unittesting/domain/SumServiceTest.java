@@ -3,12 +3,20 @@ package kata.testing.unittesting.domain;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class SumServiceTest {
 
+    @InjectMocks
     SumService sumService = new SumService();
-    ScoreRepository scoreRepositoryMock = Mockito.mock(ScoreRepository.class);
+
+    @Mock
+    ScoreRepository scoreRepositoryMock;
 
     @Before
     public void before() {
