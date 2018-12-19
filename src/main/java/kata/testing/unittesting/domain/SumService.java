@@ -1,4 +1,4 @@
-package kata.testing.unittesting;
+package kata.testing.unittesting.domain;
 
 import java.util.stream.IntStream;
 
